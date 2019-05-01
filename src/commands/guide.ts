@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { Guide } from './constants';
+import { Guide } from '../constants/constants';
 
 export const guideCommands = (message: Message, commandArguments: string): void => {
   if (commandArguments.length === 0) {

@@ -9,14 +9,14 @@ import {
   MainClassBySubClass,
   SubClassesByMainClass,
   ClassId,
-} from './constants';
+} from '../constants/constants';
 import {
   getNumberOfMainClasses,
   filterActualClasses,
   bold,
   hasDifferentMainClass,
   getMainClass,
-} from './utils';
+} from '../utils/utils';
 
 export const iamCommands = (message: Message, classes: string): void => {
   const {

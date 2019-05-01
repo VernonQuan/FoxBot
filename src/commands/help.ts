@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 
-import { Command, helpMessages, NEW_LINE, SPACE } from './constants';
-import { bold } from './utils';
+import { Command, helpMessages, NEW_LINE, SPACE } from '../constants/constants';
+import { bold } from '../utils/utils';
 import { guideCommands } from './guide';
 
 export const helpCommands = (message: Message, commandArguments: string): void => {

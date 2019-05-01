@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { jokes, TimestampInSec } from './constants';
+import { jokes, TimestampInSec } from '../constants/constants';
 
 export const generateJoke = (message: Message): void => {
   const randomNumber = Math.floor(Math.random() * jokes.length);

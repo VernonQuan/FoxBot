@@ -1,8 +1,7 @@
 import { isEqual } from 'lodash';
 
 import { Message } from 'discord.js';
-import { SPACE } from './constants';
-import { MainClass, SubClass, ClassId, SubClassesByMainClass } from './constants';
+import { MainClass, SubClass, ClassId, SubClassesByMainClass, SPACE } from '../constants/constants';
 
 export const codeBlock = (message: string): string => (
   `\`\`\`${message}\`\`\``

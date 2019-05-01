@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 
-import { Command } from './constants';
+import { Command } from '../constants/constants';
+import { parseCommand } from '../utils/utils';
 import { helpCommands } from './help';
 import { guideCommands } from './guide';
 import { runesCommands } from './runes';
@@ -8,7 +9,6 @@ import { setGuest } from './setGuest';
 import { setGuildie } from './setGuildie';
 import { generateJoke } from './joke';
 import { iamCommands } from './iam';
-import { parseCommand } from './utils';
 
 
 export const processCommand = (message: Message): void => {
