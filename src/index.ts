@@ -1,6 +1,6 @@
 import { Client } from 'discord.js';
 
-import { BOT_SECRET_TOKEN } from './common/constants';
+import { BOT_SECRET_TOKEN } from './secret.json';
 import { processCommand } from './commands/processCommand';
 const client = new Client();
 
