@@ -1,8 +1,53 @@
 export const NEW_LINE = '\n';
 export const SPACE = ' ';
 
-export enum TimestampInSec {
+export enum TimestampInMs {
   FiveSeconds = 5000,
+  OneMinute = 60000,
+}
+
+export enum DaysOfWeek {
+  Sunday = 0,
+  Monday = 1,
+  Tuesday = 2,
+  Wednesday = 3,
+  Thursday = 4,
+  Friday = 5,
+  Saturday = 6,
+}
+
+export enum Minutes {
+  Zero = 0,
+  Fifteen = 15,
+  Thirty = 30,
+  FortyFive = 45,
+}
+
+export enum TimeOfDay {
+  Midnight = 0,
+  OneAM = 1,
+  TwoAM = 2,
+  ThreeAM = 3,
+  FourAM = 4,
+  FiveAM = 5,
+  SixAM = 6,
+  SevenAM = 7,
+  EightAM = 8,
+  NineAM = 9,
+  TenAM = 10,
+  ElevenAM = 11,
+  Noon = 12,
+  OnePM = 13,
+  TwoPM = 14,
+  ThreePM = 15,
+  FourPM = 16,
+  FivePM = 17,
+  SixPM = 18,
+  SevenPM = 19,
+  EightPM = 20,
+  NinePM = 21,
+  TenPM = 22,
+  ElevenPM = 23,
 }
 
 export type ResponseMessages = {
@@ -59,6 +104,7 @@ export enum MainClass {
   Merchant = 'merchant',
   Swordsman = 'swordsman',
   Thief = 'thief',
+  Novice = 'novice',
 }
 
 export enum SubClass {
@@ -100,6 +146,7 @@ export enum Role {
   Rogue = '570699999730466817',
   Sage = '570704597903998987',
   Wizard = '570699761934663682',
+  Novice = '573937590051536906',
 }
 
 export const ClassId: ResponseMessages = {
@@ -109,6 +156,7 @@ export const ClassId: ResponseMessages = {
   [MainClass.Merchant]: '570698596354097169',
   [MainClass.Swordsman]: '570698385007443989',
   [MainClass.Thief]: '570698908892659724',
+  [MainClass.Novice]: '573937590051536906',
   [SubClass.Alchemist]: '570699925872967730',
   [SubClass.Assassin]: '570699971104604175',
   [SubClass.Bard]: '570704481642086426',
@@ -143,6 +191,7 @@ export const MainClassBySubClass: ResponseMessages = {
 export const SubClassesByMainClass: {
   [index: string]: string[],
 } = {
+  [MainClass.Novice]: [],
   [MainClass.Acolyte]: [SubClass.Monk, SubClass.Priest],
   [MainClass.Archer]: [SubClass.Bard, SubClass.Dancer, SubClass.Hunter],
   [MainClass.Magician]: [SubClass.Sage, SubClass.Wizard],

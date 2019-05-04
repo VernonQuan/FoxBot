@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash';
+import { Message, Client, TextChannel } from 'discord.js';
 
-import { Message } from 'discord.js';
 import { MainClass, SubClass, ClassId, SubClassesByMainClass, SPACE } from '../constants/constants';
 
 export const codeBlock = (message: string): string => (
@@ -41,7 +41,8 @@ export const getNumberOfMainClasses = (classes: string[]): number => {
 
   return classes.reduce((acc, curr) => {
     if (curr === MainClass.Acolyte || curr === MainClass.Archer || curr === MainClass.Magician ||
-        curr === MainClass.Merchant || curr === MainClass.Swordsman || curr === MainClass.Thief) {
+        curr === MainClass.Merchant || curr === MainClass.Swordsman || curr === MainClass.Thief ||
+        curr === MainClass.Novice) {
       return acc + 1;
     }
     return acc;
@@ -51,7 +52,8 @@ export const getNumberOfMainClasses = (classes: string[]): number => {
 export const getMainClass = (classes: string[]): string => {
   for (let i = 0; i < classes.length; i++) {
     if (classes[i] === MainClass.Acolyte || classes[i] === MainClass.Archer || classes[i] === MainClass.Magician ||
-        classes[i] === MainClass.Merchant || classes[i] === MainClass.Swordsman || classes[i] === MainClass.Thief) {
+        classes[i] === MainClass.Merchant || classes[i] === MainClass.Swordsman || classes[i] === MainClass.Thief ||
+        classes[i] === MainClass.Novice) {
       return classes[i];
     }
   }
@@ -86,3 +88,12 @@ export const hasDifferentMainClass = (classes: string[]): boolean => {
 
   return true;
 };
+
+export const getTextChannel = (client: Client, textChannelId: string): TextChannel | null => {
+  const textChannel = client.channels.find(channel => channel.id === textChannelId);
+  if (!textChannel || !((textChannel): textChannel is TextChannel => textChannel.type === 'text') (textChannel)) {
+    return null;
+  }
+
+  return textChannel;
+}

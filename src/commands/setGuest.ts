@@ -11,15 +11,26 @@ export const setGuest = (message: Message): void => {
     return;
   }
 
-  if (message.member.roles.has(Role.Guildie) || message.member.roles.has(Role.Officer)) {
-    const memberToSet = message.mentions.members.first();
-    if (memberToSet.roles.has(Role.Guildie) || memberToSet.roles.has(Role.Guest) || memberToSet.roles.has(Role.Officer)) {
-      message.channel.send('There\'s no need to set this person as a guest! They can already access guest channels!');
-    } else {
-      memberToSet.addRole(Role.Guest);
-      message.channel.send(`${memberToSet} has been set as a guest! Welcome to Fox!`);
-    }
-  } else {
-    message.channel.send('Sorry, you are not authorized to make someone a guest');
+  if (!message.member.roles.has(Role.Guildie) && !message.member.roles.has(Role.Officer)) {
+    message.channel.send('Sorry, you are not authorized to make someone a guest. Please ask any guildie to do this for you!');
+
+    return;
   }
+
+  const memberToSet = message.mentions.members.first();
+
+  if (memberToSet.user === message.client.user) {
+    message.channel.send('You want to set ME as a guest? Silly human, bots can\'t be guests!');
+
+    return;
+  }
+
+  if (memberToSet.roles.has(Role.Guildie) || memberToSet.roles.has(Role.Guest) || memberToSet.roles.has(Role.Officer)) {
+    message.channel.send('There\'s no need to set this person as a guest! They can already access guest channels!');
+
+    return;
+  }
+  memberToSet.addRole(Role.Guest);
+  message.channel.send(`${memberToSet} has been set as a guest! Welcome to Fox!`);
+
 };

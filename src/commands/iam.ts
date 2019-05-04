@@ -93,6 +93,12 @@ export const iamCommands = (message: Message, classes: string): void => {
 
   const mainClass = getMainClass(filteredClasses);
 
+  if (mainClass === MainClass.Novice && filteredClasses.length > 1) {
+    message.channel.send('Silly novice, you can\'t be any class other than a novice!');
+
+    return;
+  }
+
   if (mainClass.length > 0 && filteredClasses.length > 1 &&
       !filteredClasses.some(filteredClass => SubClassesByMainClass[mainClass].includes(filteredClass))) {
     message.channel.send(
