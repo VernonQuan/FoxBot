@@ -9,5 +9,5 @@ export const infoEmbed = new RichEmbed({
   fields: [{
     name: 'Events:',
     value: Object.keys(Event).map(event => event).join(NEW_LINE),
-  }]
+  }],
 });
