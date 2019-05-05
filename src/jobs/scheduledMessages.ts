@@ -11,19 +11,18 @@ export const scheduledMessages = (channel: TextChannel) => {
     return;
   }
 
-  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
-      currentHour === TimeOfDay.Midnight && currentMinute === Minutes.FortyFive) {
-    channel.send(`There's a little more than two hours until WoE ${guildie}s! Remember to change channels!`);
-  }
+  if (currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) {
+    if (currentHour === TimeOfDay.Midnight && currentMinute === Minutes.FortyFive) {
+      channel.send(`There's a little more than two hours until WoE ${guildie}s! Remember to change channels!`);
+    }
 
-  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
-      currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.FortyFive) {
-    channel.send(`It's almost time for WoE ${guildie}s! Let\'s suit up!`);
-  }
+    if (currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.FortyFive) {
+      channel.send(`It's almost time for WoE ${guildie}s! Let\'s suit up!`);
+    }
 
-  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
-      currentHour === TimeOfDay.ThreeAM && currentMinute === Minutes.Zero) {
-    channel.send(`It's time for WoE ${guildie}s! Good luck!`);
+    if (currentHour === TimeOfDay.ThreeAM && currentMinute === Minutes.Zero) {
+      channel.send(`It's time for WoE ${guildie}s! Good luck!`);
+    }
   }
 
   if (currentDay === DaysOfWeek.Thursday && currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.Zero) {

@@ -26,7 +26,7 @@ client.on('ready', async () => {
 
 client.on('message', async (receivedMessage) => {
   try {
-    if (receivedMessage.author.bot || receivedMessage.channel.type === 'dm') {
+    if (receivedMessage.author.bot || receivedMessage.channel.type === 'dm' || receivedMessage.channel.id === CHANNELS.PVP) {
       return;
     }
 

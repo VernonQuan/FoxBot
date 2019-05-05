@@ -5,3 +5,4 @@ export { generateJoke } from './joke/joke';
 export { runesCommands } from './runes/runes';
 export { setGuest } from './setGuest/setGuest';
 export { setGuildie } from './setGuildie/setGuildie';
+export { whenIsCommands } from './whenIs/whenIs';

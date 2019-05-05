@@ -10,6 +10,7 @@ import {
   setGuildie,
   generateJoke,
   iamCommands,
+  whenIsCommands,
 } from './index';
 
 export const processCommand = (message: Message): void => {
@@ -20,7 +21,7 @@ export const processCommand = (message: Message): void => {
       message.channel.send('Awww, you\'re welcome! I\'m just doing my job!');
       return;
     case Command.Author:
-      message.channel.send('I was made by Kiyushi! Bit by bit. Byte by byte!');
+      message.channel.send('When a girl fox and a boy fox love each other very much...');
       return;
     case Command.Help:
       helpCommands(message, commandArguments);
@@ -49,6 +50,9 @@ export const processCommand = (message: Message): void => {
       return;
     case Command.Iam:
       iamCommands(message, commandArguments);
+      return;
+    case Command.Whenis:
+      whenIsCommands(message, commandArguments);
       return;
     default:
       message.channel.send('I\'m sorry, I don\'t understand that command');

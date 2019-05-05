@@ -65,6 +65,7 @@ export enum Command {
   SetGuildie = 'setguildie',
   Joke = 'joke',
   Iam = 'iam',
+  Whenis = 'whenis',
 }
 
 export enum Role {
