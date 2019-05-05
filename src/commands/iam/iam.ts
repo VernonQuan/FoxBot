@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
 
-import { NEW_LINE, SPACE, Role } from '../../common/constants';
-import { bold } from '../../common/utils';
+import { SPACE, Role } from '../../common/constants';
 import { MainClass, SubClass, MainClassBySubClass, SubClassesByMainClass, ClassId } from './constants';
 import { getNumberOfMainClasses, filterActualClasses, hasDifferentMainClass, getMainClass } from './utils';
+import * as iamMessages from './messages';
 
 export const iamCommands = (message: Message, classes: string): void => {
   const {
@@ -13,23 +13,14 @@ export const iamCommands = (message: Message, classes: string): void => {
     },
   } = message;
   if (!currentMemberRoles || !(currentMemberRoles.has(Role.Guest) ||currentMemberRoles.has(Role.Guildie) || currentMemberRoles.has(Role.Officer))) {
-    message.channel.send('You need to be at least a guest to set your class!');
+    message.channel.send(iamMessages.unauthorized);
 
     return;
   }
 
   if (classes.length === 0) {
-    message.channel.send(
-      `Do you want to set your class?${NEW_LINE}` +
-      `You can only have one main class but as many sub classes as you want${NEW_LINE}` +
-      `You can also put just one subclass class or two subclasses if they have the same main class!${NEW_LINE}` +
-      `examples:${NEW_LINE}` +
-      `!iam wizard priest acolyte${NEW_LINE}` +
-      `!iam wizard${NEW_LINE}` +
-      `!iam knight crusader${NEW_LINE}` +
-      `${NEW_LINE}Main classes:${NEW_LINE}${Object.keys(MainClass).map(mainClass => `${bold(mainClass)}`).join(SPACE)}${NEW_LINE}` +
-      `Sub classes:${NEW_LINE}${Object.keys(SubClass).map(subClass => `${bold(subClass)}`).join(SPACE)}${NEW_LINE}`
-    )
+    message.channel.send(iamMessages.info);
+    message.channel.send(iamMessages.infoExample);
 
     return;
   }
@@ -39,7 +30,7 @@ export const iamCommands = (message: Message, classes: string): void => {
   const additionalRoles = [];
 
   if (filteredClasses.length === 0) {
-    message.channel.send('You did not give me any valid classes!');
+    message.channel.send(iamMessages.noValidClasses);
 
     return;
   }
@@ -59,18 +50,15 @@ export const iamCommands = (message: Message, classes: string): void => {
   const numberOfMainClasses = getNumberOfMainClasses(filteredClasses);
 
   if (numberOfMainClasses > 1) {
-    message.channel.send(
-      `You need only one main class!${NEW_LINE}` +
-      `Bad example: !iam acolyte swordsman priest${NEW_LINE}` +
-      `Good example: !iam acolyte priest assassin knight${NEW_LINE}`
-    )
+    message.channel.send(iamMessages.onlyOneMainClass);
+    message.channel.send(iamMessages.oneMainClassExample);
 
     return;
   }
 
   if (numberOfMainClasses === 0) {
     if (hasDifferentMainClass(filteredClasses)) {
-      message.channel.send('You didn\'t give me a main class but you gave me two different subclasses!');
+      message.channel.send(iamMessages.noValidClasses);
 
       return;
     }
@@ -81,22 +69,20 @@ export const iamCommands = (message: Message, classes: string): void => {
   const mainClass = getMainClass(filteredClasses);
 
   if (mainClass === MainClass.Novice && filteredClasses.length > 1) {
-    message.channel.send('Silly novice, you can\'t be any class other than a novice!');
+    message.channel.send(iamMessages.novice);
 
     return;
   }
 
   if (mainClass.length > 0 && filteredClasses.length > 1 &&
       !filteredClasses.some(filteredClass => SubClassesByMainClass[mainClass].includes(filteredClass))) {
-    message.channel.send(
-      'Your main class and subclasses don\'t match! If you have subclasses, at least one has to match with your main class!'
-    );
+    message.channel.send(iamMessages.noMatch);
 
     return;
   }
 
   if (filteredClasses.includes(SubClass.Dancer) && filteredClasses.includes(SubClass.Bard)) {
-    message.channel.send('You can\'t be a Bard AND a Dancer at the same time!');
+    message.channel.send(iamMessages.bardAndDancer);
 
     return;
   }
@@ -106,5 +92,5 @@ export const iamCommands = (message: Message, classes: string): void => {
     ...filteredClasses.map(filteredClass => ClassId[filteredClass]),
   ]);
 
-  message.channel.send('Your classes have been set!');
+  message.channel.send(iamMessages.success);
 };
