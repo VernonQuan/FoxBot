@@ -11,12 +11,12 @@ export const scheduledMessages = (channel: TextChannel) => {
     return;
   }
 
-  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Sunday) &&
+  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
       currentHour === TimeOfDay.Midnight && currentMinute === Minutes.FortyFive) {
     channel.send(`There's a little more than two hours until WoE ${guildie}s! Remember to change channels!`);
   }
 
-  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Sunday) &&
+  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
       currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.FortyFive) {
     channel.send(`It's almost time for WoE ${guildie}s! Let\'s suit up!`);
   }
