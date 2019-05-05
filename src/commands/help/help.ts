@@ -1,9 +1,10 @@
 import { Message } from 'discord.js';
 
-import { Command, helpMessages, NEW_LINE, SPACE } from '../constants/constants';
-import { bold } from '../utils/utils';
-import { guideCommands } from './guide';
-import { USERS } from '../constants/users.json';
+import { Command, NEW_LINE, SPACE } from '../../common/constants';
+import { bold } from '../../common/utils';
+import { guideCommands } from '../guide/guide';
+import { USERS } from '../../config.json';
+import { helpMessages } from './constants';
 
 export const helpCommands = (message: Message, commandArguments: string): void => {
   if (commandArguments.length === 0) {
@@ -41,7 +42,7 @@ export const helpCommands = (message: Message, commandArguments: string): void =
         guideCommands(message, newCommandArguments);
         return;
       default:
-        message.channel.send(`I\'m sorry, I can\'t help ${wordEndsWithIng ? 'with ' : ''}${sorryMessage.join(' ')}`);
+        message.channel.send(`I'm sorry, I can't help ${wordEndsWithIng ? 'with ' : ''}${sorryMessage.join(SPACE)}`);
     }
   }
 };

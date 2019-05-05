@@ -1,5 +1,5 @@
 import { TextChannel } from 'discord.js'
-import { DaysOfWeek, TimeOfDay, Minutes, Role } from '../constants/constants';
+import { DaysOfWeek, TimeOfDay, Minutes, Role } from '../common/constants';
 
 export const scheduledMessages = (channel: TextChannel) => {
   const now = new Date();
@@ -21,7 +21,7 @@ export const scheduledMessages = (channel: TextChannel) => {
     channel.send(`It's almost time for WoE ${guildie}s! Let\'s suit up!`);
   }
 
-  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Sunday) &&
+  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
       currentHour === TimeOfDay.ThreeAM && currentMinute === Minutes.Zero) {
     channel.send(`It's time for WoE ${guildie}s! Good luck!`);
   }
