@@ -1,7 +1,8 @@
 import { Message } from 'discord.js';
 
-import { Runes, runeMessage, RUNES_BASE_URL, RUNES_CLASS_URL, NEW_LINE } from '../constants/constants';
-import { bold, capitalizeFirst } from '../utils/utils';
+import { NEW_LINE } from '../../common/constants';
+import { bold, capitalizeFirst } from '../../common/utils';
+import { Runes, runeMessage, RUNES_BASE_URL, RUNES_CLASS_URL } from './constants';
 
 export const runesCommands = (message: Message, commandArguments: string): void => {
   if (commandArguments.length === 0) {

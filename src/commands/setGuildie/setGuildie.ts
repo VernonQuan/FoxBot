@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { Role } from '../constants/constants';
+import { Role } from '../../common/constants';
 
 export const setGuildie = (message: Message): void => {
   if (message.mentions.members.array().length === 0) {

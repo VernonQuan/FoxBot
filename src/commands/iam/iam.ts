@@ -1,22 +1,9 @@
 import { Message } from 'discord.js';
 
-import {
-  NEW_LINE,
-  SPACE,
-  MainClass,
-  SubClass,
-  Role,
-  MainClassBySubClass,
-  SubClassesByMainClass,
-  ClassId,
-} from '../constants/constants';
-import {
-  getNumberOfMainClasses,
-  filterActualClasses,
-  bold,
-  hasDifferentMainClass,
-  getMainClass,
-} from '../utils/utils';
+import { NEW_LINE, SPACE, Role } from '../../common/constants';
+import { bold } from '../../common/utils';
+import { MainClass, SubClass, MainClassBySubClass, SubClassesByMainClass, ClassId } from './constants';
+import { getNumberOfMainClasses, filterActualClasses, hasDifferentMainClass, getMainClass } from './utils';
 
 export const iamCommands = (message: Message, classes: string): void => {
   const {

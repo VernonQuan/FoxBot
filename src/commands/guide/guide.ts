@@ -1,13 +1,14 @@
 import { Message } from 'discord.js';
 
-import { Guide } from '../constants/constants';
+import { NEW_LINE } from '../../common/constants';
+import { Guide } from './constants';
 
 export const guideCommands = (message: Message, commandArguments: string): void => {
   if (commandArguments.length === 0) {
     message.channel.send(
-      'What guide did you need? I have the following guides in my backpack\n\
-      ET - gives the current bosses for this week\n\
-      Prices - for all your trading needs!'
+      `What guide did you need? I have the following guides in my backpack${NEW_LINE}` +
+      `ET - gives the current bosses for this week${NEW_LINE}` +
+      'Prices - for all your trading needs!'
     );
   } else {
     switch (commandArguments.toLowerCase()) {

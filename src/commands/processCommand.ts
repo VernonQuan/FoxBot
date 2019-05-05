@@ -1,15 +1,16 @@
 import { Message } from 'discord.js';
 
-import { Command } from '../constants/constants';
-import { parseCommand } from '../utils/utils';
-import { helpCommands } from './help';
-import { guideCommands } from './guide';
-import { runesCommands } from './runes';
-import { setGuest } from './setGuest';
-import { setGuildie } from './setGuildie';
-import { generateJoke } from './joke';
-import { iamCommands } from './iam';
-
+import { Command, NEW_LINE } from '../common/constants';
+import { parseCommand } from '../common/utils';
+import {
+  helpCommands,
+  guideCommands,
+  runesCommands,
+  setGuest,
+  setGuildie,
+  generateJoke,
+  iamCommands,
+} from './index';
 
 export const processCommand = (message: Message): void => {
   const { command, commandArguments } = parseCommand(message);
@@ -29,8 +30,8 @@ export const processCommand = (message: Message): void => {
       return;
     case Command.Prices:
       message.channel.send(
-        'You need help with prices? I\'m not good with numbers so but I have two sites for you to use!\n' +
-        'https://www.romexchange.com/\n' +
+        `'You need help with prices? I'm not good with numbers so but I have two sites for you to use!${NEW_LINE}'` +
+        `https://www.romexchange.com/${NEW_LINE}` +
         'https://poring.world'
       );
       return;
