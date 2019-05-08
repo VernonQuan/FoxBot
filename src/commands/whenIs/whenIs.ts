@@ -5,16 +5,17 @@ import { generateMessage } from './utils';
 import * as whenIsMessages from './messages';
 
 export const whenIsCommands = (message: Message, commandArguments: string): void => {
+  const { channel } = message;
   if (commandArguments.length === 0) {
-    message.channel.send(whenIsMessages.info);
-    message.channel.send(whenIsMessages.infoEmbed);
+    channel.send(whenIsMessages.info);
+    channel.send(whenIsMessages.infoEmbed);
 
     return;
   }
 
   if (!Object.values(Event).includes(commandArguments.toLowerCase())) {
-    message.channel.send('That is not a valid event!');
+    channel.send('That is not a valid event!');
   }
 
-  message.channel.send(generateMessage(commandArguments.toLowerCase()));
+  channel.send(generateMessage(commandArguments.toLowerCase()));
 };

@@ -11,16 +11,17 @@ export const iamCommands = (message: Message, classes: string): void => {
     member: {
       roles: currentMemberRoles,
     },
+    channel,
   } = message;
   if (!currentMemberRoles || !(currentMemberRoles.has(Role.Guest) ||currentMemberRoles.has(Role.Guildie) || currentMemberRoles.has(Role.Officer))) {
-    message.channel.send(iamMessages.unauthorized);
+    channel.send(iamMessages.unauthorized);
 
     return;
   }
 
   if (classes.length === 0) {
-    message.channel.send(iamMessages.info);
-    message.channel.send(iamMessages.infoExample);
+    channel.send(iamMessages.info);
+    channel.send(iamMessages.infoExample);
 
     return;
   }
@@ -30,7 +31,7 @@ export const iamCommands = (message: Message, classes: string): void => {
   const additionalRoles = [];
 
   if (filteredClasses.length === 0) {
-    message.channel.send(iamMessages.noValidClasses);
+    channel.send(iamMessages.noValidClasses);
 
     return;
   }
@@ -50,15 +51,15 @@ export const iamCommands = (message: Message, classes: string): void => {
   const numberOfMainClasses = getNumberOfMainClasses(filteredClasses);
 
   if (numberOfMainClasses > 1) {
-    message.channel.send(iamMessages.onlyOneMainClass);
-    message.channel.send(iamMessages.oneMainClassExample);
+    channel.send(iamMessages.onlyOneMainClass);
+    channel.send(iamMessages.oneMainClassExample);
 
     return;
   }
 
   if (numberOfMainClasses === 0) {
     if (hasDifferentMainClass(filteredClasses)) {
-      message.channel.send(iamMessages.noValidClasses);
+      channel.send(iamMessages.twoSubClasses);
 
       return;
     }
@@ -69,20 +70,20 @@ export const iamCommands = (message: Message, classes: string): void => {
   const mainClass = getMainClass(filteredClasses);
 
   if (mainClass === MainClass.Novice && filteredClasses.length > 1) {
-    message.channel.send(iamMessages.novice);
+    channel.send(iamMessages.novice);
 
     return;
   }
 
   if (mainClass.length > 0 && filteredClasses.length > 1 &&
       !filteredClasses.some(filteredClass => SubClassesByMainClass[mainClass].includes(filteredClass))) {
-    message.channel.send(iamMessages.noMatch);
+    channel.send(iamMessages.noMatch);
 
     return;
   }
 
   if (filteredClasses.includes(SubClass.Dancer) && filteredClasses.includes(SubClass.Bard)) {
-    message.channel.send(iamMessages.bardAndDancer);
+    channel.send(iamMessages.bardAndDancer);
 
     return;
   }
@@ -92,5 +93,5 @@ export const iamCommands = (message: Message, classes: string): void => {
     ...filteredClasses.map(filteredClass => ClassId[filteredClass]),
   ]);
 
-  message.channel.send(iamMessages.success);
+  channel.send(iamMessages.success);
 };

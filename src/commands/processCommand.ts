@@ -14,14 +14,15 @@ import {
 } from './index';
 
 export const processCommand = (message: Message): void => {
+  const { channel } = message;
   const { command, commandArguments } = parseCommand(message);
 
   switch (command.toLowerCase()) {
     case Command.Thank:
-      message.channel.send('Awww, you\'re welcome! I\'m just doing my job!');
+      channel.send('Awww, you\'re welcome! I\'m just doing my job!');
       return;
     case Command.Author:
-      message.channel.send('When a girl fox and a boy fox love each other very much...');
+      channel.send('When a girl fox and a boy fox love each other very much...');
       return;
     case Command.Help:
       helpCommands(message, commandArguments);
@@ -30,7 +31,7 @@ export const processCommand = (message: Message): void => {
       guideCommands(message, commandArguments);
       return;
     case Command.Prices:
-      message.channel.send(
+      channel.send(
         `'You need help with prices? I'm not good with numbers so but I have two sites for you to use!${NEW_LINE}'` +
         `https://www.romexchange.com/${NEW_LINE}` +
         'https://poring.world'
@@ -55,6 +56,6 @@ export const processCommand = (message: Message): void => {
       whenIsCommands(message, commandArguments);
       return;
     default:
-      message.channel.send('I\'m sorry, I don\'t understand that command');
+      channel.send('I\'m sorry, I don\'t understand that command');
   }
 }

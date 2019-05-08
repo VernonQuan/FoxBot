@@ -5,8 +5,9 @@ import { bold, capitalizeFirst } from '../../common/utils';
 import { Runes, runeMessage, RUNES_BASE_URL, RUNES_CLASS_URL } from './constants';
 
 export const runesCommands = (message: Message, commandArguments: string): void => {
+  const { channel } = message;
   if (commandArguments.length === 0) {
-    message.channel.send(
+    channel.send(
       `These are the current commands for the classes you can use with !runes${NEW_LINE}` +
       `eg: !runes assassin${NEW_LINE}` +
       Object.keys(runeMessage).map((command) => (
@@ -16,7 +17,7 @@ export const runesCommands = (message: Message, commandArguments: string): void 
   } else {
     switch (commandArguments.toLowerCase()) {
       case Runes.Simulator:
-        message.channel.send('https://phamtrong204.github.io/RuneBFS');
+        channel.send('https://phamtrong204.github.io/RuneBFS');
         return;
       case Runes.Assassin:
       case Runes.Blacksmith:
@@ -26,10 +27,10 @@ export const runesCommands = (message: Message, commandArguments: string): void 
       case Runes.Monk:
       case Runes.Priest:
       case Runes.Wizard:
-        message.channel.send(`${RUNES_BASE_URL}${RUNES_CLASS_URL[commandArguments.toLowerCase()]}`)
+        channel.send(`${RUNES_BASE_URL}${RUNES_CLASS_URL[commandArguments.toLowerCase()]}`)
         return;
       default:
-        message.channel.send(`I'm sorry, I don't have ${commandArguments} yet. If you didn't mispell it, I'll try to have it soon!`);
+        channel.send(`I'm sorry, I don't have ${commandArguments} yet. If you didn't mispell it, I'll try to have it soon!`);
     }
   }
 };

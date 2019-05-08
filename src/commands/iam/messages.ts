@@ -31,7 +31,7 @@ export const infoExample = new RichEmbed({
              `!iam wizard${NEW_LINE}` +
              `!iam knight crusader${NEW_LINE}`,
     },
-  ]
+  ],
 });
 
 export const oneMainClassExample = new RichEmbed({

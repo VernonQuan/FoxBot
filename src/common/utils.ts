@@ -1,6 +1,6 @@
 import { Message, Client, TextChannel } from 'discord.js';
 
-import { ChannelType, SPACE } from './constants';
+import { ChannelType, ResponseMessages, SPACE, NEW_LINE } from './constants';
 
 export const codeBlock = (message: string): string => (
   `\`\`\`${message}\`\`\``
@@ -40,4 +40,10 @@ export const getTextChannel = (client: Client, textChannelId: string): TextChann
   }
 
   return textChannel;
-}
+};
+
+export const generateInfoMenu = (messages: ResponseMessages): string => (
+  Object.keys(messages).map((key) => (
+    `${bold(key)} - ${messages[key]}`
+  )).join(NEW_LINE)
+);

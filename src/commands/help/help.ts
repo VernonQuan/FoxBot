@@ -1,19 +1,14 @@
 import { Message } from 'discord.js';
 
-import { Command, NEW_LINE, SPACE } from '../../common/constants';
-import { bold } from '../../common/utils';
+import { Command, SPACE } from '../../common/constants';
 import { guideCommands } from '../guide/guide';
-import { USERS } from '../../config.json';
-import { helpMessages } from './constants';
+import * as helpMessages from './messages';
 
 export const helpCommands = (message: Message, commandArguments: string): void => {
+  const { channel } = message;
   if (commandArguments.length === 0) {
-    message.channel.send(
-      `You can use the following commands with me! Just use "!" followed by that command!${NEW_LINE}` +
-      Object.keys(helpMessages).map((command) => (
-        `${NEW_LINE}${bold(command)} - ${helpMessages[command]}`
-      )).join('')
-    );
+    channel.send(helpMessages.info);
+    channel.send(helpMessages.infoEmbed);
   } else {
     const fullMessage = commandArguments.split(SPACE);
     const command = fullMessage[0];
@@ -32,9 +27,6 @@ export const helpCommands = (message: Message, commandArguments: string): void =
       if (i === 0 && sorryMessage[i].endsWith('ing')) {
         wordEndsWithIng = true;
       }
-      if (sorryMessage[i] === `<@${USERS.AznBeast}>`) {
-        sorryMessage[i] = 'that dumbass';
-      }
     }
 
     switch (command.toLowerCase()) {
@@ -42,7 +34,7 @@ export const helpCommands = (message: Message, commandArguments: string): void =
         guideCommands(message, newCommandArguments);
         return;
       default:
-        message.channel.send(`I'm sorry, I can't help ${wordEndsWithIng ? 'with ' : ''}${sorryMessage.join(SPACE)}`);
+        channel.send(`I'm sorry, I can't help ${wordEndsWithIng ? 'with ' : ''}${sorryMessage.join(SPACE)}`);
     }
   }
 };
