@@ -2,8 +2,12 @@ export const NEW_LINE = '\n';
 export const SPACE = ' ';
 
 export enum TimestampInMs {
+  OneSecond = 1000,
   FiveSeconds = 5000,
   OneMinute = 60000,
+  OneHour = 3600000,
+  OneDay = 86400000,
+  SevenDays = 604800000,
 }
 
 export enum DaysOfWeek {

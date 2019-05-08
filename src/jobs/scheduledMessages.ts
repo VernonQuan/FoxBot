@@ -16,7 +16,7 @@ export const scheduledMessages = (channel: TextChannel) => {
       channel.send(`There's a little more than two hours until WoE ${guildie}s! Remember to change channels!`);
     }
 
-    if (currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.FortyFive) {
+    if (currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.Thirty) {
       channel.send(`It's almost time for WoE ${guildie}s! Let\'s suit up!`);
     }
 
