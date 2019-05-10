@@ -25,6 +25,8 @@ export const RUNES_CLASS_URL: ResponseMessages = {
   [Runes.Wizard]: '2045429025',
 };
 
+export const SIMULATOR_URL = 'https://phamtrong204.github.io/RuneBFS';
+
 export const runeMessage: ResponseMessages = {
   [Runes.Simulator]: 'If you need help planning for your runes!',
   [Runes.Assassin]: 'Assassin / Assassin Cross / Guillotine Cross',

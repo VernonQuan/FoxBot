@@ -1,7 +1,11 @@
 import { TextChannel } from 'discord.js'
-import { DaysOfWeek, TimeOfDay, Minutes, Role } from '../common/constants';
+import { DaysOfWeek, TimeOfDay, Minutes, Role } from '../../common/constants';
 
-export const scheduledMessages = (channel: TextChannel) => {
+export const scheduledMessages = (channel: TextChannel | null) => {
+  if (!channel) {
+    return;
+  }
+
   const now = new Date();
   const currentDay = now.getUTCDay();
   const currentHour = now.getUTCHours();
@@ -13,7 +17,7 @@ export const scheduledMessages = (channel: TextChannel) => {
 
   if (currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) {
     if (currentHour === TimeOfDay.Midnight && currentMinute === Minutes.FortyFive) {
-      channel.send(`There's a little more than two hours until WoE ${guildie}s! Remember to change channels!`);
+      channel.send(`There's a little more than two hours until WoE ${guildie}s! Remember to change channels! Our home channel is currently NA19`);
     }
 
     if (currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.Thirty) {

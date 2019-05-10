@@ -1,3 +1,5 @@
+import { Guild, TextChannel } from 'discord.js';
+
 export const NEW_LINE = '\n';
 export const SPACE = ' ';
 
@@ -5,7 +7,9 @@ export enum TimestampInMs {
   OneSecond = 1000,
   FiveSeconds = 5000,
   OneMinute = 60000,
+  ThirtyMinutes = 1800000,
   OneHour = 3600000,
+  ThreeHours = 10800000,
   OneDay = 86400000,
   SevenDays = 604800000,
 }
@@ -76,6 +80,7 @@ export enum Role {
   Guildie = '571135421392879637',
   Officer = '570705061420990501',
   Guest = '570786681897222188',
+  Bot = '571386512961437697',
   Acolyte = '570631297710555186',
   Archer = '570698806140731392',
   Magician = '570698449771692033',
@@ -105,3 +110,8 @@ export enum ChannelType {
   Voice = 'voice',
   Category = 'category',
 }
+
+export type JobPackage = {
+  scheduledMessages: TextChannel | null,
+  attendanceManagement: Guild | null,
+};

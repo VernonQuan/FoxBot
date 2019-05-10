@@ -3,16 +3,28 @@ import { Message } from 'discord.js';
 import { SPACE, Role } from '../../common/constants';
 import { MainClass, SubClass, MainClassBySubClass, SubClassesByMainClass, ClassId } from './constants';
 import { getNumberOfMainClasses, filterActualClasses, hasDifferentMainClass, getMainClass } from './utils';
+import { GUILDS } from '../../config.json';
 import * as iamMessages from './messages';
 
 export const iamCommands = (message: Message, classes: string): void => {
-  const {
-    member: currentMember,
-    member: {
-      roles: currentMemberRoles,
-    },
-    channel,
-  } = message;
+  const foxGuild = message.client.guilds.array().find(guild => guild.id === GUILDS.FOX);
+  const { channel } = message;
+
+  if (!foxGuild) {
+    channel.send(iamMessages.noGuild);
+
+    return;
+  }
+
+  const currentMember = foxGuild.members.array().find(member => member.id === message.author.id);
+
+  if (!currentMember) {
+    channel.send(iamMessages.notInGuild);
+
+    return;
+  }
+
+  const { roles: currentMemberRoles } = currentMember;
   if (!currentMemberRoles || !(currentMemberRoles.has(Role.Guest) ||currentMemberRoles.has(Role.Guildie) || currentMemberRoles.has(Role.Officer))) {
     channel.send(iamMessages.unauthorized);
 

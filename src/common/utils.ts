@@ -1,6 +1,7 @@
-import { Message, Client, TextChannel } from 'discord.js';
+import { Message, TextChannel, Guild, Client } from 'discord.js';
 
-import { ChannelType, ResponseMessages, SPACE, NEW_LINE } from './constants';
+import { ChannelType, ResponseMessages, JobPackage, SPACE, NEW_LINE } from './constants';
+import { GUILDS, CHANNELS } from '../config.json';
 
 export const codeBlock = (message: string): string => (
   `\`\`\`${message}\`\`\``
@@ -33,17 +34,27 @@ export const parseCommand = (message: Message): {
   }
 };
 
-export const getTextChannel = (client: Client, textChannelId: string): TextChannel | null => {
-  const textChannel = client.channels.find(channel => channel.id === textChannelId);
+export const getTextChannelFromGuild = (guild: Guild, textChannelId: string): TextChannel | null => {
+  const textChannel = guild.channels.find(channel => channel.id === textChannelId);
   if (!textChannel || !((textChannel): textChannel is TextChannel => textChannel.type === ChannelType.Text) (textChannel)) {
     return null;
   }
 
   return textChannel;
-};
+}
 
 export const generateInfoMenu = (messages: ResponseMessages): string => (
   Object.keys(messages).map((key) => (
     `${bold(key)} - ${messages[key]}`
   )).join(NEW_LINE)
 );
+
+export const createJobPackage = (client: Client): JobPackage => {
+  const foxGuild = client.guilds.find(guild => guild.id === GUILDS.FOX);
+  const pvpChannel = getTextChannelFromGuild(foxGuild, CHANNELS.PVP);
+
+  return  {
+    scheduledMessages: pvpChannel,
+    attendanceManagement: foxGuild,
+  }
+}

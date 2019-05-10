@@ -1,19 +1,13 @@
 import { Message } from 'discord.js';
 
-import { NEW_LINE } from '../../common/constants';
-import { bold, capitalizeFirst } from '../../common/utils';
-import { Runes, runeMessage, RUNES_BASE_URL, RUNES_CLASS_URL } from './constants';
+import { Runes, RUNES_BASE_URL, RUNES_CLASS_URL } from './constants';
+import { info, infoEmbed } from './messages';
 
 export const runesCommands = (message: Message, commandArguments: string): void => {
   const { channel } = message;
   if (commandArguments.length === 0) {
-    channel.send(
-      `These are the current commands for the classes you can use with !runes${NEW_LINE}` +
-      `eg: !runes assassin${NEW_LINE}` +
-      Object.keys(runeMessage).map((command) => (
-        `${NEW_LINE}${bold(capitalizeFirst(command))} - ${runeMessage[command]}`
-      )).join('')
-    );
+    channel.send(info);
+    channel.send(infoEmbed);
   } else {
     switch (commandArguments.toLowerCase()) {
       case Runes.Simulator:

@@ -3,6 +3,8 @@ import { RichEmbed } from 'discord.js';
 import { NEW_LINE, SPACE } from '../../common/constants';
 import { MainClass, SubClass } from './constants';
 
+export const noGuild = 'It doesn\'t look like the guild exists...';
+export const notInGuild = 'You need to be on the server Fox to use this command!';
 export const unauthorized = 'You need to be at least a guest to set your class!';
 export const info = `Do you want to set your class?${NEW_LINE}` +
   `You can only have one main class but as many sub classes as you want${NEW_LINE}` +

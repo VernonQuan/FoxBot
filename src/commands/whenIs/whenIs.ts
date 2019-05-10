@@ -8,7 +8,7 @@ export const whenIsCommands = (message: Message, commandArguments: string): void
   const { channel } = message;
   if (commandArguments.length === 0) {
     channel.send(whenIsMessages.info);
-    channel.send(whenIsMessages.infoEmbed);
+    channel.send(whenIsMessages.generateTime());
 
     return;
   }

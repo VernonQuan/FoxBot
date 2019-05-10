@@ -22,7 +22,12 @@ export const processCommand = (message: Message): void => {
       channel.send('Awww, you\'re welcome! I\'m just doing my job!');
       return;
     case Command.Author:
-      channel.send('When a girl fox and a boy fox love each other very much...');
+      const randomNumber = Math.floor(Math.random() * 5);
+      if (randomNumber) {
+        channel.send('I was built by Kiyushi! At least... that\'s what he tells me.');
+      } else {
+        channel.send('When a girl fox and a bot fox love each other very much...');
+      }
       return;
     case Command.Help:
       helpCommands(message, commandArguments);
@@ -32,7 +37,7 @@ export const processCommand = (message: Message): void => {
       return;
     case Command.Prices:
       channel.send(
-        `'You need help with prices? I'm not good with numbers so but I have two sites for you to use!${NEW_LINE}'` +
+        `'You need help with prices? I'm not good with numbers but I have two sites for you to use!${NEW_LINE}'` +
         `https://www.romexchange.com/${NEW_LINE}` +
         'https://poring.world'
       );

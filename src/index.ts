@@ -1,11 +1,12 @@
-import { Client } from 'discord.js';
+import { Client, RichEmbed } from 'discord.js';
 
 import { BOT_SECRET_TOKEN, PREFIX, CHANNELS } from './config.json';
 import { processCommand } from './commands/processCommand';
-import { scheduledMessages } from './jobs/scheduledMessages';
+import { processJobs } from './jobs/processJobs';
 import { sentinelMessages } from './sentry/guideSentry';
+import { checkAttendance } from './sentry/checkAttendance';
 import { TimestampInMs } from './common/constants';
-import { getTextChannel } from './common/utils';
+import { createJobPackage } from './common/utils';
 
 const client = new Client();
 
@@ -13,13 +14,9 @@ client.on('ready', async () => {
   console.log(`Connected as ${client.user.tag}`);
 
   try {
-    const pvpChannel = await getTextChannel(client, CHANNELS.PVP);
+    const jobPackage = createJobPackage(client);
 
-    if (!pvpChannel) {
-      return;
-    }
-
-    setInterval(scheduledMessages, TimestampInMs.OneMinute, pvpChannel);
+    setInterval(processJobs, TimestampInMs.OneMinute, jobPackage);
   } catch (err) {
     console.error(err);
   }
@@ -28,6 +25,7 @@ client.on('ready', async () => {
 client.on('message', async (receivedMessage) => {
   try {
     const { author, channel, content } = receivedMessage;
+    const attendanceChannel = receivedMessage.guild.channels.find(channel => channel.name === 'attendance');
 
     if (author.bot || channel.id === CHANNELS.PVP) {
       return;
@@ -35,6 +33,12 @@ client.on('message', async (receivedMessage) => {
 
     if (channel.id === CHANNELS.GUIDES) {
       sentinelMessages(receivedMessage);
+
+      return;
+    }
+
+    if (attendanceChannel && channel.id === attendanceChannel.id) {
+      checkAttendance(receivedMessage);
 
       return;
     }
@@ -48,6 +52,10 @@ client.on('message', async (receivedMessage) => {
     }
   } catch (err) {
     console.error(err);
+    receivedMessage.channel.send('Oh no! I hit a bug! Kiyushi! Could you take a look at this?');
+    receivedMessage.channel.send(new RichEmbed({
+      description: err,
+    }));
   }
 });
 

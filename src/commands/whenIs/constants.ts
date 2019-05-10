@@ -1,4 +1,4 @@
-import { DaysOfWeek, TimeOfDay, Minutes, ResponseMessages } from '../../common/constants';
+import { DaysOfWeek, TimeOfDay, Minutes, ResponseMessages, TimestampInMs } from '../../common/constants';
 
 export enum TimeDenomination {
   Day = 'day',
@@ -27,6 +27,7 @@ export type EventTime = {
     days: number[],
     hour: number,
     minute: number,
+    duration: number,
   },
 };
 
@@ -35,15 +36,18 @@ export const eventTimes: EventTime = {
     days: [DaysOfWeek.Saturday],
     hour: TimeOfDay.OneAM,
     minute: Minutes.Zero,
+    duration: TimestampInMs.ThreeHours,
   },
   [Event.PoringBattle]: {
     days: [DaysOfWeek.Thursday],
     hour: TimeOfDay.TwoAM,
     minute: Minutes.Zero,
+    duration: TimestampInMs.ThirtyMinutes,
   },
   [Event.WoE]: {
     days: [DaysOfWeek.Friday, DaysOfWeek.Monday],
     hour: TimeOfDay.ThreeAM,
     minute: Minutes.Zero,
+    duration: TimestampInMs.OneHour,
   }
 };
