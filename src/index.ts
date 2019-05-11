@@ -25,7 +25,6 @@ client.on('ready', async () => {
 client.on('message', async (receivedMessage) => {
   try {
     const { author, channel, content } = receivedMessage;
-    const attendanceChannel = receivedMessage.guild.channels.find(channel => channel.name === 'attendance');
 
     if (author.bot || channel.id === CHANNELS.PVP) {
       return;
@@ -37,10 +36,14 @@ client.on('message', async (receivedMessage) => {
       return;
     }
 
-    if (attendanceChannel && channel.id === attendanceChannel.id) {
-      checkAttendance(receivedMessage);
+    if (channel.type !== 'dm') {
+      const attendanceChannel = receivedMessage.guild.channels.find(channel => channel.name === 'attendance');
 
-      return;
+      if (attendanceChannel && channel.id === attendanceChannel.id) {
+        checkAttendance(receivedMessage);
+
+        return;
+      }
     }
 
     if (content.startsWith(PREFIX)) {

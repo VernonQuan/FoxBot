@@ -38,7 +38,6 @@ export const iamCommands = (message: Message, classes: string): void => {
     return;
   }
 
-
   const filteredClasses = filterActualClasses(classes.toLowerCase().split(SPACE));
   const additionalRoles = [];
 
