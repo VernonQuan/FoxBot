@@ -1,8 +1,9 @@
-import { Guild, TextChannel } from 'discord.js';
+import { Guild, TextChannel, DMChannel, GroupDMChannel } from 'discord.js';
 
 export const NEW_LINE = '\n';
 export const SPACE = ' ';
 
+export type Channel = TextChannel | DMChannel | GroupDMChannel;
 export enum TimestampInMs {
   OneSecond = 1000,
   FiveSeconds = 5000,
@@ -74,6 +75,7 @@ export enum Command {
   Joke = 'joke',
   Iam = 'iam',
   Whenis = 'whenis',
+  ET = 'et',
 }
 
 export enum Role {

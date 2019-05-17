@@ -1,6 +1,8 @@
 import { Client, RichEmbed } from 'discord.js';
+// import * as mySql from 'mysql';
 
 import { BOT_SECRET_TOKEN, PREFIX, CHANNELS } from './config.json';
+import { hi } from './commands/index';
 import { processCommand } from './commands/processCommand';
 import { processJobs } from './jobs/processJobs';
 import { sentinelMessages } from './sentry/guideSentry';
@@ -9,6 +11,7 @@ import { TimestampInMs } from './common/constants';
 import { createJobPackage } from './common/utils';
 
 const client = new Client();
+// const connection = mySql.createConnection(DATABASE);
 
 client.on('ready', async () => {
   console.log(`Connected as ${client.user.tag}`);
@@ -49,7 +52,7 @@ client.on('message', async (receivedMessage) => {
     if (content.startsWith(PREFIX)) {
       processCommand(receivedMessage);
     } else if (content.toLowerCase().includes('hi foxbot')) {
-      channel.send(`Hi ${author}!`);
+      hi(receivedMessage);
     } else if (content.toLowerCase().includes('establish dominance')) {
       channel.send('You mean ***assert*** dominance');
     }

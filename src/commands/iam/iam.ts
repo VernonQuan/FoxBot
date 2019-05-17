@@ -32,8 +32,7 @@ export const iamCommands = (message: Message, classes: string): void => {
   }
 
   if (classes.length === 0) {
-    channel.send(iamMessages.info);
-    channel.send(iamMessages.infoExample);
+    channel.send(iamMessages.info, iamMessages.infoExample);
 
     return;
   }
@@ -62,8 +61,7 @@ export const iamCommands = (message: Message, classes: string): void => {
   const numberOfMainClasses = getNumberOfMainClasses(filteredClasses);
 
   if (numberOfMainClasses > 1) {
-    channel.send(iamMessages.onlyOneMainClass);
-    channel.send(iamMessages.oneMainClassExample);
+    channel.send(iamMessages.onlyOneMainClass, iamMessages.oneMainClassExample);
 
     return;
   }

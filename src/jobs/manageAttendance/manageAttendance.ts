@@ -20,7 +20,7 @@ export const manageAttendance = async (guild: Guild | null): Promise<void> => {
     createAttendance(guild);
   }
 
-  if ((currentDay === DaysOfWeek.Saturday || currentDay === DaysOfWeek.Tuesday) &&
+  if ((currentDay === DaysOfWeek.Friday || currentDay === DaysOfWeek.Monday) &&
       currentHour === TimeOfDay.FourAM && currentMinute === Minutes.Zero) {
     deleteAttendance(guild);
   }
@@ -47,7 +47,7 @@ export const createAttendance = async (guild: Guild): Promise<void> => {
     channel.send(
       `Hi ${guildie}s! There's WoE today! This channel for taking WoE attendance!${NEW_LINE}` +
       `Please say ${bold('here')} or ${bold('absent')} to let us know if you're going to be here or not!${NEW_LINE}` +
-      `If you change your mind later. You can always change your ${bold('here')} or ${bold('absent')} status!${NEW_LINE}` +
+      `If you change your mind later, you can always change your ${bold('here')} or ${bold('absent')} status!${NEW_LINE}` +
       'I will only keep track of your latest status! Your previous status will be deleted!'
     );
   });

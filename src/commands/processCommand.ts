@@ -4,13 +4,13 @@ import { Command, NEW_LINE } from '../common/constants';
 import { parseCommand } from '../common/utils';
 import {
   helpCommands,
-  guideCommands,
   runesCommands,
   setGuest,
   setGuildie,
   generateJoke,
   iamCommands,
   whenIsCommands,
+  etCommand,
 } from './index';
 
 export const processCommand = (message: Message): void => {
@@ -30,10 +30,10 @@ export const processCommand = (message: Message): void => {
       }
       return;
     case Command.Help:
-      helpCommands(message, commandArguments);
+      helpCommands(channel, commandArguments);
       return;
-    case Command.Guide:
-      guideCommands(message, commandArguments);
+    case Command.ET:
+      etCommand(channel);
       return;
     case Command.Prices:
       channel.send(
@@ -43,7 +43,7 @@ export const processCommand = (message: Message): void => {
       );
       return;
     case Command.Runes:
-      runesCommands(message, commandArguments);
+      runesCommands(channel, commandArguments);
       return;
     case Command.SetGuest:
       setGuest(message);
@@ -52,13 +52,13 @@ export const processCommand = (message: Message): void => {
       setGuildie(message);
       return;
     case Command.Joke:
-      generateJoke(message);
+      generateJoke(channel);
       return;
     case Command.Iam:
       iamCommands(message, commandArguments);
       return;
     case Command.Whenis:
-      whenIsCommands(message, commandArguments);
+      whenIsCommands(channel, commandArguments);
       return;
     default:
       channel.send('I\'m sorry, I don\'t understand that command');

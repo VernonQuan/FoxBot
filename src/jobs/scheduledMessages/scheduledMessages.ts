@@ -23,10 +23,6 @@ export const scheduledMessages = (channel: TextChannel | null) => {
     if (currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.Thirty) {
       channel.send(`It's almost time for WoE ${guildie}s! Let\'s suit up!`);
     }
-
-    if (currentHour === TimeOfDay.ThreeAM && currentMinute === Minutes.Zero) {
-      channel.send(`It's time for WoE ${guildie}s! Good luck!`);
-    }
   }
 
   if (currentDay === DaysOfWeek.Thursday && currentHour === TimeOfDay.TwoAM && currentMinute === Minutes.Zero) {

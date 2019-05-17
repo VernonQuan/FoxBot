@@ -1,13 +1,10 @@
-import { Message } from 'discord.js';
-
+import { Channel } from '../../common/constants';
 import { Runes, RUNES_BASE_URL, RUNES_CLASS_URL } from './constants';
 import { info, infoEmbed } from './messages';
 
-export const runesCommands = (message: Message, commandArguments: string): void => {
-  const { channel } = message;
+export const runesCommands = (channel: Channel, commandArguments: string): void => {
   if (commandArguments.length === 0) {
-    channel.send(info);
-    channel.send(infoEmbed);
+    channel.send(info, infoEmbed);
   } else {
     switch (commandArguments.toLowerCase()) {
       case Runes.Simulator:

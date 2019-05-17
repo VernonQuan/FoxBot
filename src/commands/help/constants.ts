@@ -2,7 +2,7 @@ import { ResponseMessages, Command } from '../../common/constants';
 
 export const helpMessages: ResponseMessages = {
   [Command.Help]: 'That\'s this menu right here!',
-  [Command.Guide]: 'A bunch of guides that my slaves... I mean guildmates helped compile!',
+  [Command.ET]: 'You need the current bosses for this week?',
   [Command.Prices]: 'for all your trading needs!',
   [Command.Runes]: 'A list of special runes and the grid for that class!',
   [Command.Whenis]: 'Do you need the time for events?',
