@@ -1,7 +1,7 @@
 import { JobPackage } from '../common/constants';
-import { scheduledMessages, manageAttendance } from './index';
+import { scheduledMessages } from './index';
 
 export const processJobs = (jobPackage: JobPackage): void => {
-  scheduledMessages(jobPackage.scheduledMessages);
-  manageAttendance(jobPackage.attendanceManagement);
+  scheduledMessages(jobPackage.scheduledChannels);
+  // manageAttendance(jobPackage.attendanceManagement);
 };

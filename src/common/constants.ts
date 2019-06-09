@@ -113,7 +113,17 @@ export enum ChannelType {
   Category = 'category',
 }
 
+export enum ScheduleChannel {
+  PvP = 'pvp',
+  PvE = 'pve',
+};
+
+export type scheduledMessageChannels = {
+  [ScheduleChannel.PvE]: TextChannel | null,
+  [ScheduleChannel.PvP]: TextChannel | null,
+};
+
 export type JobPackage = {
-  scheduledMessages: TextChannel | null,
+  scheduledChannels: scheduledMessageChannels,
   attendanceManagement: Guild | null,
 };

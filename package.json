@@ -9,22 +9,25 @@
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "tslint": "^5.16.0",
+    "ts-node": "^8.1.0",
     "typescript": "^3.4.5"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/lodash": "^4.14.123",
     "@types/mocha": "^5.2.6",
+    "@types/moment": "^2.13.0",
     "@types/mysql": "^2.15.6",
     "@types/node": "^11.13.8",
-    "@types/moment": "^2.13.0",
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
-    "ts-node": "^8.1.0"
+    "typings": "^2.1.1"
   },
   "scripts": {
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "start": "rm -rf dist && tsc && node dist/index.js"
+    "start": "rm -rf dist && tsc && node dist/index.js",
+    "start-gcp": "rm -rf dist && tsc && nohup node dist/index.js > log.txt 2>&1 & echo $! > pid.txt",
+    "stop-gcp": "kill $(tail pid.txt)"
   },
   "author": "Vernon Quan",
   "license": "ISC"

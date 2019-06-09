@@ -1,6 +1,14 @@
-import { Message, TextChannel, Guild, Client } from 'discord.js';
+import { Message, TextChannel, Guild, Client, RichEmbed } from 'discord.js';
 
-import { ChannelType, ResponseMessages, JobPackage, SPACE, NEW_LINE } from './constants';
+import {
+  ChannelType,
+  ResponseMessages,
+  JobPackage,
+  ScheduleChannel,
+  scheduledMessageChannels,
+  SPACE,
+  NEW_LINE,
+} from './constants';
 import { GUILDS, CHANNELS } from '../config.json';
 
 export const codeBlock = (message: string): string => (
@@ -41,7 +49,7 @@ export const getTextChannelFromGuild = (guild: Guild, textChannelId: string): Te
   }
 
   return textChannel;
-}
+};
 
 export const generateInfoMenu = (messages: ResponseMessages): string => (
   Object.keys(messages).map((key) => (
@@ -51,10 +59,22 @@ export const generateInfoMenu = (messages: ResponseMessages): string => (
 
 export const createJobPackage = (client: Client): JobPackage => {
   const foxGuild = client.guilds.find(guild => guild.id === GUILDS.FOX);
-  const pvpChannel = getTextChannelFromGuild(foxGuild, CHANNELS.PVP);
+
+  const scheduledChannels: scheduledMessageChannels = {
+    [ScheduleChannel.PvE]: getTextChannelFromGuild(foxGuild, CHANNELS.PVE),
+    [ScheduleChannel.PvP]: getTextChannelFromGuild(foxGuild, CHANNELS.PVP),
+  }
 
   return  {
-    scheduledMessages: pvpChannel,
+    scheduledChannels,
     attendanceManagement: foxGuild,
   }
-}
+};
+
+export const generateError = (client: Client, ownerId: string, err: Error): void => {
+  const owner = client.users.find(owner => owner.id === ownerId);
+
+  owner.send(`Hey ${owner}! I just hit an error! Could you take a look?`, new RichEmbed({
+    description: `${err.name}${NEW_LINE}${err.message}${NEW_LINE}${err.stack}`
+  }));
+};

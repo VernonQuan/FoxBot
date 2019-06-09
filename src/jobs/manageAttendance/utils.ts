@@ -9,6 +9,7 @@ export const setTemporaryChannelPermissions = (channel: TextChannel, guild: Guil
     SEND_MESSAGES: false,
     READ_MESSAGES: false,
     READ_MESSAGE_HISTORY: false,
+    MANAGE_MESSAGES: false,
   });
   channel.overwritePermissions(guild.roles.find(role => role.id === Role.Guildie), {
     CONNECT: true,
@@ -23,5 +24,6 @@ export const setTemporaryChannelPermissions = (channel: TextChannel, guild: Guil
     SEND_MESSAGES: true,
     READ_MESSAGES: true,
     READ_MESSAGE_HISTORY: true,
+    MANAGE_MESSAGES: true,
   });
 };

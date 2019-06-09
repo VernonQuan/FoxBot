@@ -14,12 +14,14 @@ export enum Event {
   WoE = 'woe',
   PoringBattle = 'poringbattle',
   MvpBattle = 'mvpbattle',
+  Ufo = 'bigcatufo',
 }
 
 export const EVENT_LABEL: ResponseMessages = {
   [Event.WoE]: 'WoE',
   [Event.PoringBattle]: 'Poring Battle',
   [Event.MvpBattle]: 'MVP Battle',
+  [Event.Ufo]: 'Big Cat UFO',
 };
 
 export type EventTime = {
@@ -49,5 +51,11 @@ export const eventTimes: EventTime = {
     hour: TimeOfDay.ThreeAM,
     minute: Minutes.Zero,
     duration: TimestampInMs.OneHour,
-  }
+  },
+  [Event.Ufo]: {
+    days: [DaysOfWeek.Sunday],
+    hour: TimeOfDay.TwoAM,
+    minute: Minutes.Zero,
+    duration: TimestampInMs.ThirtyMinutes,
+  },
 };
