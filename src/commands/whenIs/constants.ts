@@ -14,7 +14,7 @@ export enum Event {
   WoE = 'woe',
   PoringBattle = 'poringbattle',
   MvpBattle = 'mvpbattle',
-  Ufo = 'bigcatufo',
+  Ufo = 'ufo',
 }
 
 export const EVENT_LABEL: ResponseMessages = {

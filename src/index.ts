@@ -50,10 +50,6 @@ client.on('message', async (receivedMessage) => {
       }
     }
 
-    if (channel.id !== CHANNELS.PUBLIC || channel.id !== CHANNELS.FOXBOT || channel.id !== CHANNELS.TEST || channel.type !== ChannelType.Dm) {
-      return;
-    }
-
     if (content.startsWith(PREFIX)) {
       processCommand(receivedMessage);
     } else if (content.toLowerCase().includes('hi foxbot')) {
