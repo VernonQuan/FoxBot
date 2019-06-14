@@ -72,4 +72,8 @@ client.on('guildMemberAdd', (member) => {
   }
 });
 
+client.on('error', (err) => {
+  console.error(err);
+});
+
 client.login(BOT_SECRET_TOKEN);
